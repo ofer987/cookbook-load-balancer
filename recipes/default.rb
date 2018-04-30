@@ -30,3 +30,5 @@ apt_update 'daily' do
 end
 
 include_recipe 'load-balancer::users'
+include_recipe 'load-balancer::git'
+include_recipe 'load-balancer::reverse_proxy'

@@ -1,0 +1,20 @@
+server {
+  listen 443 ssl;
+  server_name <%= @reverse_proxy_regex_url %> localhost;
+
+  location / {
+    proxy_pass <%= @client_public_url %>;
+  }
+
+  ssl_certificate <%= @ssl_certificate_path %>;
+  ssl_certificate_key <%= @ssl_certificate_key %>;
+}
+
+server {
+  listen 80;
+  listen [::]:80;
+  server_name <%= @reverse_proxy_regex_url %> localhost;
+
+  return 301 <%= @reverse_proxy_url %>;
+}
+
