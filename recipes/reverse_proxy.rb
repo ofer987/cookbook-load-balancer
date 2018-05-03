@@ -1,7 +1,6 @@
 include_recipe 'nginx::default'
 
 chef_user = my_root_user
-nginx_user = my_nginx_user
 
 ssl_certificate_path = File.join(
   chef_user.secrets_path,
@@ -16,7 +15,7 @@ ssl_key_path = File.join(
 
 nginx_site 'reverse_proxy' do
   action :enable
-  name 'client'
+  name 'reverse_proxy'
   template 'reverse_proxy.erb'
   variables(
     reverse_proxy_url: node['reverse_proxy']['url'],
